@@ -1,12 +1,460 @@
+
 <!DOCTYPE html>
-<html lang="zh-CN">
+<html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>我的个人网站</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Academic homepage of Wanjie Lü." />
+  <title>Wanjie Lü | Academic Homepage</title>
+  <style>
+    :root {
+      --bg: #f7f7f2;
+      --paper: #ffffff;
+      --ink: #1f2933;
+      --muted: #667085;
+      --line: #e5e7eb;
+      --accent: #315c72;
+      --accent-soft: #e8f0f3;
+      --shadow: 0 18px 45px rgba(31, 41, 51, 0.08);
+      --radius: 22px;
+      --max-width: 1080px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
+        "PingFang SC", "Noto Sans CJK SC", "Microsoft YaHei", sans-serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(49, 92, 114, 0.12), transparent 34rem),
+        linear-gradient(180deg, #fbfbf8 0%, var(--bg) 100%);
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    .wrap {
+      width: min(100% - 32px, var(--max-width));
+      margin: 0 auto;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(247, 247, 242, 0.82);
+      backdrop-filter: blur(18px);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.75);
+    }
+
+    nav {
+      min-height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      color: var(--ink);
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      padding: 76px 0 44px;
+      display: grid;
+      grid-template-columns: 1.5fr 0.8fr;
+      gap: 36px;
+      align-items: center;
+    }
+
+    .hero-card,
+    .section-card {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid rgba(229, 231, 235, 0.9);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    .hero-card {
+      padding: 42px;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 12px;
+      margin-bottom: 18px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    h1,
+    h2,
+    h3 {
+      line-height: 1.18;
+      margin: 0;
+      letter-spacing: -0.04em;
+    }
+
+    h1 {
+      font-size: clamp(2.3rem, 6vw, 4.8rem);
+    }
+
+    h2 {
+      font-size: clamp(1.5rem, 3vw, 2.15rem);
+      margin-bottom: 18px;
+    }
+
+    h3 {
+      font-size: 1.08rem;
+      margin-bottom: 6px;
+    }
+
+    .subtitle {
+      margin: 18px 0 0;
+      max-width: 760px;
+      color: var(--muted);
+      font-size: 1.08rem;
+    }
+
+    .cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 28px;
+    }
+
+    .button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 42px;
+      padding: 0 16px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      font-weight: 750;
+      background: #fff;
+      color: var(--ink);
+    }
+
+    .button.primary {
+      border-color: var(--accent);
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .profile {
+      padding: 26px;
+      text-align: center;
+    }
+
+    .avatar {
+      width: 170px;
+      height: 170px;
+      margin: 4px auto 20px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      color: #fff;
+      font-size: 3.8rem;
+      font-weight: 850;
+      letter-spacing: -0.08em;
+      background: linear-gradient(135deg, #315c72, #7b9eab);
+      box-shadow: 0 20px 38px rgba(49, 92, 114, 0.24);
+    }
+
+    .profile p {
+      margin: 8px 0;
+      color: var(--muted);
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 18px;
+    }
+
+    .tag {
+      padding: 5px 10px;
+      border-radius: 999px;
+      background: #f2f4f7;
+      color: #475467;
+      font-size: 0.84rem;
+      font-weight: 650;
+    }
+
+    main {
+      padding-bottom: 64px;
+    }
+
+    section {
+      margin-top: 24px;
+    }
+
+    .section-card {
+      padding: 30px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .list {
+      display: grid;
+      gap: 18px;
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    .item {
+      padding-bottom: 18px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .item:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+
+    .meta {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 0.94rem;
+    }
+
+    .pub-title {
+      font-weight: 800;
+    }
+
+    .pub-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+      font-size: 0.92rem;
+      font-weight: 700;
+    }
+
+    .news-date {
+      display: inline-block;
+      min-width: 92px;
+      color: var(--accent);
+      font-weight: 800;
+    }
+
+    footer {
+      padding: 28px 0 44px;
+      color: var(--muted);
+      text-align: center;
+      font-size: 0.94rem;
+    }
+
+    @media (max-width: 840px) {
+      header {
+        position: static;
+      }
+
+      nav {
+        align-items: flex-start;
+        flex-direction: column;
+        padding: 16px 0;
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+      }
+
+      .hero,
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        padding-top: 36px;
+      }
+
+      .hero-card,
+      .section-card {
+        padding: 24px;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>你好，世界！</h1>
-    <p>欢迎来到我的第一个个人网站。这里是使用 GitHub Pages 搭建的。</p>
+  <header>
+    <nav class="wrap" aria-label="Main navigation">
+      <a class="brand" href="#top">Wanjie Lü</a>
+      <div class="nav-links">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#publications">Publications</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+  </header>
+
+  <main id="top" class="wrap">
+    <section class="hero">
+      <div class="hero-card">
+        <div class="eyebrow">Academic Homepage</div>
+        <h1>Wanjie Lü<br /><span style="color: var(--accent);">吕万杰</span></h1>
+        <p class="subtitle">
+          I am interested in stochastic sampling algorithms, Langevin dynamics,
+          hypocoercivity, and numerical analysis for high-dimensional probability distributions.
+        </p>
+        <div class="cta-row">
+          <a class="button primary" href="mailto:your.email@example.com">Email Me</a>
+          <a class="button" href="cv.pdf">CV</a>
+          <a class="button" href="https://scholar.google.com/" target="_blank" rel="noreferrer">Google Scholar</a>
+          <a class="button" href="https://github.com/your-username" target="_blank" rel="noreferrer">GitHub</a>
+        </div>
+      </div>
+
+      <aside class="profile hero-card">
+        <!-- Replace this initials block with an image if you want:
+             <img src="avatar.jpg" alt="Wanjie Lü" class="avatar" />
+        -->
+        <div class="avatar" aria-label="Wanjie Lü initials">WL</div>
+        <h3>Wanjie Lü</h3>
+        <p>Ph.D. Student / Researcher</p>
+        <p>Department / University</p>
+        <div class="tags">
+          <span class="tag">Sampling</span>
+          <span class="tag">Langevin Dynamics</span>
+          <span class="tag">Hypocoercivity</span>
+          <span class="tag">Numerical SDEs</span>
+        </div>
+      </aside>
+    </section>
+
+    <section id="about" class="section-card">
+      <h2>About</h2>
+      <p>
+        I work on the theoretical analysis of stochastic algorithms for sampling and optimization.
+        My current research focuses on high-resolution Langevin dynamics, convergence in total variation,
+        discretization error, and dimension-dependent complexity bounds.
+      </p>
+      <p>
+        This page collects my research interests, selected publications, projects, notes, and contact information.
+      </p>
+    </section>
+
+    <section class="grid">
+      <div id="research" class="section-card">
+        <h2>Research Interests</h2>
+        <ul class="list">
+          <li class="item">
+            <h3>Langevin-type Sampling Algorithms</h3>
+            <p class="meta">Underdamped Langevin dynamics, high-resolution dynamics, and accelerated samplers.</p>
+          </li>
+          <li class="item">
+            <h3>Non-asymptotic Error Analysis</h3>
+            <p class="meta">KL divergence, total variation distance, Wasserstein distance, and discretization error.</p>
+          </li>
+          <li class="item">
+            <h3>Hypocoercivity and Functional Inequalities</h3>
+            <p class="meta">Poincaré inequality, log-Sobolev inequality, and convergence of kinetic systems.</p>
+          </li>
+        </ul>
+      </div>
+
+      <div class="section-card">
+        <h2>News</h2>
+        <ul class="list">
+          <li class="item"><span class="news-date">2026.06</span> Personal homepage launched.</li>
+          <li class="item"><span class="news-date">2026.05</span> Working on discretization error analysis for HFHR dynamics.</li>
+          <li class="item"><span class="news-date">2026.04</span> Draft notes on hypocoercive convergence updated.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="publications" class="section-card">
+      <h2>Selected Publications & Preprints</h2>
+      <ul class="list">
+        <li class="item">
+          <div class="pub-title">Title of Your Paper on Hessian-Free High-Resolution Langevin Dynamics</div>
+          <div class="meta"><strong>Wanjie Lü</strong>. Preprint, 2026.</div>
+          <div class="pub-links">
+            <a href="#">arXiv</a>
+            <a href="#">PDF</a>
+            <a href="#">Code</a>
+          </div>
+        </li>
+        <li class="item">
+          <div class="pub-title">Another Paper Title Goes Here</div>
+          <div class="meta">Coauthor A, <strong>Wanjie Lü</strong>, Coauthor B. Conference / Journal, 2026.</div>
+          <div class="pub-links">
+            <a href="#">PDF</a>
+            <a href="#">Slides</a>
+          </div>
+        </li>
+      </ul>
+    </section>
+
+    <section id="projects" class="section-card">
+      <h2>Projects & Notes</h2>
+      <ul class="list">
+        <li class="item">
+          <h3>HFHR Dynamics</h3>
+          <p class="meta">
+            Notes and experiments on Hessian-Free High-Resolution dynamics and its exponential Euler discretization.
+          </p>
+        </li>
+        <li class="item">
+          <h3>Sampling Experiments</h3>
+          <p class="meta">
+            Numerical experiments for Gaussian mixtures, kinetic samplers, and high-dimensional benchmarks.
+          </p>
+        </li>
+      </ul>
+    </section>
+
+    <section id="contact" class="section-card">
+      <h2>Contact</h2>
+      <p>
+        Email: <a href="mailto:your.email@example.com">your.email@example.com</a><br />
+        GitHub: <a href="https://github.com/your-username" target="_blank" rel="noreferrer">github.com/your-username</a><br />
+        Address: Department, University, City, Country
+      </p>
+    </section>
+  </main>
+
+  <footer class="wrap">
+    Last updated: June 2026 · Built with GitHub Pages
+  </footer>
 </body>
 </html>
